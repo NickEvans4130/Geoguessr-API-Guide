@@ -185,6 +185,29 @@ Python examples require the `requests` library and use environment variables for
 - Find best value subscriptions
 - No authentication needed for viewing plans
 
+### Authentication
+
+**JavaScript:**
+- `check-auth-status.js` - Verify you're logged in and view account details
+- `sign-in-example.js` - Sign in programmatically (educational purposes only)
+
+**Python:**
+- `check_auth_status.py` - Verify you're logged in and view account details
+- `sign_in_example.py` - Sign in programmatically (educational purposes only)
+
+**What you can do:**
+- Check authentication status
+- Verify if cookies are valid
+- View account age and creation date
+- Educational sign-in examples
+
+**⚠️  Important Notes:**
+- Sign-in examples are for educational purposes only
+- Programmatic login may violate Terms of Service
+- Use proper OAuth flows in production
+- Never hardcode or commit credentials
+- Always use environment variables for sensitive data
+
 ## Getting Your Cookie
 
 To use these examples, you need your `_ncfa` cookie:

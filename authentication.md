@@ -23,7 +23,11 @@ GeoGuessr supports multiple authentication methods:
 
 All authentication endpoints use the `_ncfa` cookie for session management after successful login.
 
-**Important:** These endpoints are primarily used by the GeoGuessr client application and may require specific headers or request formats.
+**🚀 Ready to use?** Check out the [authentication examples](../examples/javascript/authentication/) for ready-to-use scripts:
+- [Check Auth Status](../examples/javascript/authentication/check-auth-status.js) - Verify you're logged in
+- [Sign In Example](../examples/javascript/authentication/sign-in-example.js) - Educational sign-in demonstration
+
+**⚠️  Important:** These endpoints are primarily used by the GeoGuessr client application. Programmatic authentication may violate Terms of Service. Examples are provided for educational purposes only.
 
 ## Endpoints
 

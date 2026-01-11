@@ -71,10 +71,26 @@ New to the API? Start with the [examples directory](./examples/):
 - **Python Examples** - Complete scripts ready to use (`pip install requests`)
 
 **Popular examples:**
+
+**Challenges & Competition:**
 - [Get Challenge Leaderboard](./examples/javascript/challenges/get-leaderboard.js) - View top players and scores
 - [Analyze Your Performance](./examples/javascript/challenges/analyze-performance.js) - See how you rank
-- [Get Your Profile](./examples/javascript/profiles/get-my-profile.js) - View your stats
+
+**User & Social:**
+- [Get Your Profile](./examples/javascript/profiles/get-my-profile.js) - View your stats and progress
+- [Compare Users](./examples/javascript/profiles/compare-users.js) - Head-to-head player comparison
 - [Friends Activity Feed](./examples/javascript/feed/get-friends-activity.js) - Track what friends are playing
+
+**Gameplay:**
+- [Create Streak Game](./examples/javascript/games/create-streak-game.js) - Start custom streak games with presets
+- [Get Game State](./examples/javascript/games/get-game-state.js) - Monitor game progress in real-time
+
+**Maps & Content:**
+- [Browse Popular Maps](./examples/javascript/maps/browse-popular-maps.js) - Discover popular community maps
+- [Search Maps](./examples/javascript/maps/search-maps.js) - Find maps by keywords
+
+**Subscriptions:**
+- [Compare Plans](./examples/javascript/subscriptions/compare-plans.js) - Find the best subscription value
 
 See [examples/README.md](./examples/README.md) for the complete list and usage instructions.
 
@@ -593,26 +609,31 @@ const userId = url.split('/').pop();  // "59c55f9656b1c23bc81cb742"
 
 ## Contributing
 
-This documentation is community-maintained and based on real API testing. To contribute:
+This documentation is community-maintained and welcomes contributions! We need help with:
 
-1. **Test endpoints thoroughly** - Verify behavior with actual API calls
-2. **Document complete structures** - Include all fields with TypeScript interfaces
-3. **Provide working examples** - Include both JavaScript and Python examples
-4. **Note edge cases** - Document errors, deprecated endpoints, and special behaviors
-5. **Keep it organized** - Use the existing file structure and formatting conventions
+- 🐛 **Bug Reports** - Found incorrect information? Let us know!
+- 📝 **Documentation** - Improve explanations, fix typos, update outdated content
+- 💻 **Code Examples** - Add more examples or improve existing ones
+- 🧪 **Testing** - Verify endpoints still work, test new features
+- 🆕 **New Content** - Document new endpoints or API features
 
-### Documentation Standards
+### Quick Start
 
-- All endpoint documentation should include:
-  - Complete request/response examples
-  - TypeScript interfaces for data structures
-  - Working code examples in JavaScript and Python
-  - Notes about authentication requirements
-  - Common errors and edge cases
+1. Fork the repository
+2. Make your changes following our [Contributing Guidelines](./CONTRIBUTING.md)
+3. Test your changes thoroughly
+4. Submit a pull request
 
-- Use verified data from actual API testing
-- Update the relevant category file (authentication.md, profiles.md, etc.)
-- Keep examples simple and practical
+### Standards
+
+All contributions must:
+- ✅ Be verified with real API testing (no assumptions!)
+- ✅ Include complete data structures with TypeScript interfaces
+- ✅ Provide working code examples in both JavaScript and Python
+- ✅ Document authentication requirements and error cases
+- ✅ Follow the existing file structure and formatting
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines, testing procedures, and submission process.
 
 ## Resources
 
