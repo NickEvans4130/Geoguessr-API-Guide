@@ -611,7 +611,7 @@ This documentation is community-maintained and based on real API testing. To con
 ## Resources
 
 - [GeoGuessr Website](https://www.geoguessr.com)
-- [Community Discord Servers](https://www.geoguessr.com/discord)
+- [Community Discord Servers](https://discord.com/invite/geoguessr)
 - [GitHub Projects](https://github.com/search?q=geoguessr+api)
 
 ## License
