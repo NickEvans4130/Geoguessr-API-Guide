@@ -12,6 +12,10 @@ Endpoints for managing GeoGuessr Pro subscriptions and plans.
 
 GeoGuessr offers Pro subscriptions with additional features. These endpoints allow checking subscription status, available plans, and payment methods.
 
+**🚀 Ready to use?** Check out the [subscriptions examples](../examples/javascript/subscriptions/) for ready-to-use scripts:
+- [Check Subscription](../examples/javascript/subscriptions/check-subscription.js) - View your subscription status and billing
+- [Compare Plans](../examples/javascript/subscriptions/compare-plans.js) - Compare all available plans and find best value
+
 ## Endpoints
 
 ### Get Subscription Status

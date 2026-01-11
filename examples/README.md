@@ -150,6 +150,41 @@ Python examples require the `requests` library and use environment variables for
 - Search for specific maps
 - Browse different map categories
 
+### Games & Gameplay
+
+**JavaScript:**
+- `get-game-state.js` - View current game state and progress
+- `create-streak-game.js` - Create custom streak games with presets
+
+**Python:**
+- `get_game_state.py` - View current game state and progress
+- `create_streak_game.py` - Create custom streak games with interactive setup
+
+**What you can do:**
+- Check game progress and statistics
+- View round details and guesses
+- Create streak games with custom settings
+- Use difficulty presets (easy, medium, hard, NMPZ)
+- Monitor game state in real-time
+
+### Subscriptions
+
+**JavaScript:**
+- `check-subscription.js` - View your subscription status and billing info
+- `compare-plans.js` - Compare all available subscription plans
+
+**Python:**
+- `check_subscription.py` - View your subscription status and billing info
+- `compare_plans.py` - Compare all available subscription plans with analysis
+
+**What you can do:**
+- Check if you have Pro features
+- View subscription end date and renewal info
+- Compare plan pricing across currencies
+- Calculate savings between monthly/yearly plans
+- Find best value subscriptions
+- No authentication needed for viewing plans
+
 ## Getting Your Cookie
 
 To use these examples, you need your `_ncfa` cookie:

@@ -16,6 +16,10 @@ GeoGuessr offers multiple game modes:
 - **Streak Mode** - Country/region streak challenges
 - **Infinity Mode** - Asynchronous competitive gameplay with friends
 
+**🚀 Ready to use?** Check out the [games examples](../examples/javascript/games/) for ready-to-use scripts:
+- [Get Game State](../examples/javascript/games/get-game-state.js) - View current game progress and statistics
+- [Create Streak Game](../examples/javascript/games/create-streak-game.js) - Start custom streak games with presets
+
 ## Endpoints
 
 ### Standard Games

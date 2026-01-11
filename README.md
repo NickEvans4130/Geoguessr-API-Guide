@@ -45,13 +45,17 @@ The API can change at any time without notice.
 │   │   ├── profiles/          # Profile viewing, user search, comparison
 │   │   ├── social/            # Friends list and statistics
 │   │   ├── maps/              # Browse and discover maps
-│   │   └── feed/              # Activity feeds and tracking
+│   │   ├── feed/              # Activity feeds and tracking
+│   │   ├── games/             # Game state, streak creation
+│   │   └── subscriptions/     # Subscription status, plan comparison
 │   └── python/                # Python script examples
 │       ├── challenges/        # Challenge leaderboards, performance analysis
 │       ├── profiles/          # Profile viewing, user search
 │       ├── social/            # Friends list and statistics
 │       ├── maps/              # Browse and search maps
-│       └── feed/              # Activity feeds and tracking
+│       ├── feed/              # Activity feeds and tracking
+│       ├── games/             # Game state, streak creation
+│       └── subscriptions/     # Subscription status, plan comparison
 └── tests/                     # Testing files (not for public use)
     ├── *-testing.md           # Test scripts for each endpoint
     └── *-testing-results.md   # Raw test results
