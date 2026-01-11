@@ -49,7 +49,9 @@ The API can change at any time without notice.
 │   └── python/                # Python script examples
 │       ├── challenges/        # Challenge leaderboards, performance analysis
 │       ├── profiles/          # Profile viewing, user search
-│       └── social/            # Friends list and statistics
+│       ├── social/            # Friends list and statistics
+│       ├── maps/              # Browse and search maps
+│       └── feed/              # Activity feeds and tracking
 └── tests/                     # Testing files (not for public use)
     ├── *-testing.md           # Test scripts for each endpoint
     └── *-testing-results.md   # Raw test results

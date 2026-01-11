@@ -121,22 +121,34 @@ Python examples require the `requests` library and use environment variables for
 **JavaScript:**
 - `get-friends-activity.js` - View recent activity from friends with analytics
 
+**Python:**
+- `get_friends_activity.py` - View recent activity from friends with analytics and export options
+
 **What you can do:**
 - See what your friends are playing
 - Track most active friends
 - View activity type breakdown
 - Monitor recent games
+- Analyze peak activity hours
+- Export activity data to JSON
 
 ### Maps
 
 **JavaScript:**
 - `browse-popular-maps.js` - Browse popular maps with statistics
+- `search-maps.js` - Search for maps by name or keywords
+
+**Python:**
+- `browse_popular_maps.py` - Browse popular, featured, new, or hot maps with statistics
+- `search_maps.py` - Search for maps by name or keywords
 
 **What you can do:**
 - Discover popular maps
 - Find maps by difficulty
 - See map creators
 - View location counts and likes
+- Search for specific maps
+- Browse different map categories
 
 ## Getting Your Cookie
 
