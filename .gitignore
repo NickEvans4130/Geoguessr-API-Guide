@@ -1,0 +1,25 @@
+# Testing files and results
+tests/
+
+# Environment variables
+.env
+.env.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Personal notes
+notes.md
+scratch.md
+
+.claude
