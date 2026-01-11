@@ -188,22 +188,21 @@ When documenting a new endpoint:
 ## 📚 Documentation Structure
 
 Our repository is organized as:
-```
 .
-├── README.md              # Main documentation
-├── authentication.md      # Auth endpoints
-├── challenges.md          # Challenge endpoints
-├── feed.md               # Feed endpoints
-├── games.md              # Game endpoints
-├── maps.md               # Map endpoints
-├── profiles.md           # Profile endpoints
-├── social.md             # Social endpoints
-├── subscriptions.md      # Subscription endpoints
-├── examples/
-│   ├── README.md         # Examples guide
-│   ├── javascript/       # JS examples by category
-│   └── python/           # Python examples by category
-└── tests/                # Internal testing files
+|-- README.md              # Main documentation
+|-- authentication.md      # Auth endpoints
+|-- challenges.md          # Challenge endpoints
+|-- feed.md                # Feed endpoints
+|-- games.md               # Game endpoints
+|-- maps.md                # Map endpoints
+|-- profiles.md            # Profile endpoints
+|-- social.md              # Social endpoints
+|-- subscriptions.md       # Subscription endpoints
+|-- examples/
+|   |-- README.md          # Examples guide
+|   |-- javascript/        # JS examples by category
+|   +-- python/            # Python examples by category
++-- tests/                 # Internal testing files
 ```
 
 ## 🎨 Writing Style
