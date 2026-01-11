@@ -32,6 +32,7 @@ The API can change at any time without notice.
 ├── README.md                  # This file - Getting started guide
 ├── authentication.md          # Authentication & account endpoints
 ├── challenges.md              # Challenge creation and results
+├── duels.md                   # Duels game state and replays (game-server API)
 ├── feed.md                    # Activity feeds and social streams
 ├── games.md                   # Game sessions and gameplay modes
 ├── maps.md                    # Map browsing and searching
@@ -47,6 +48,7 @@ The API can change at any time without notice.
 │   │   ├── maps/              # Browse and discover maps
 │   │   ├── feed/              # Activity feeds and tracking
 │   │   ├── games/             # Game state, streak creation
+│   │   ├── duels/             # Duels state and replay analysis
 │   │   └── subscriptions/     # Subscription status, plan comparison
 │   └── python/                # Python script examples
 │       ├── challenges/        # Challenge leaderboards, performance analysis
@@ -55,6 +57,7 @@ The API can change at any time without notice.
 │       ├── maps/              # Browse and search maps
 │       ├── feed/              # Activity feeds and tracking
 │       ├── games/             # Game state, streak creation
+│       ├── duels/             # Duels state and replay analysis
 │       └── subscriptions/     # Subscription status, plan comparison
 └── tests/                     # Testing files (not for public use)
     ├── *-testing.md           # Test scripts for each endpoint
@@ -83,7 +86,11 @@ New to the API? Start with the [examples directory](./examples/):
 
 **Gameplay:**
 - [Create Streak Game](./examples/javascript/games/create-streak-game.js) - Start custom streak games with presets
-- [Get Game State](./examples/javascript/games/get-game-state.js) - Monitor game progress in real-time
+- [Get Game State](./examples/javascript/games/get-game-state.js) - Monitor game progress
+
+**Duels & Competitive:**
+- [Get Duel State](./examples/javascript/duels/get-duel-state.js) - View live duel health, damage, and results
+- [Analyze Duel Replay](./examples/javascript/duels/get-duel-replay.js) - Study player strategies and behavior
 
 **Maps & Content:**
 - [Browse Popular Maps](./examples/javascript/maps/browse-popular-maps.js) - Discover popular community maps
@@ -96,12 +103,21 @@ See [examples/README.md](./examples/README.md) for the complete list and usage i
 
 ## Getting Started
 
-### Base URL
+### Base URLs
 
-All API endpoints use the base URL:
+GeoGuessr has two API domains:
+
+**Main API:**
 ```
 https://www.geoguessr.com/api
 ```
+Used for most endpoints (profiles, challenges, maps, etc.)
+
+**Game Server API:**
+```
+https://game-server.geoguessr.com/api
+```
+Used for game data (duels, replays)
 
 ### API Versions
 
@@ -109,7 +125,7 @@ GeoGuessr has multiple API versions:
 - **v3**: Legacy endpoints, still widely used
 - **v4**: Newer endpoints with enhanced features
 
-Most endpoints are in v3, with newer features migrating to v4.
+Most endpoints are in v3, with newer features migrating to v4. The game server API does not use versioning.
 
 ### Response Format
 
@@ -495,6 +511,13 @@ Game sessions and gameplay modes
 - Standard games
 - Streak mode
 - Infinity mode
+
+### [Duels](./duels.md)
+Competitive duels and replay data (game-server API)
+- Get duel game state and results
+- Team duels with multiple players
+- Replay data with player actions
+- Health, damage, and multiplier systems
 
 ### [Social & Friends](./social.md)
 Friends, badges, and social features

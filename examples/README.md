@@ -13,6 +13,7 @@ examples/
 │   ├── maps/            # Map browsing
 │   ├── feed/            # Activity feeds
 │   ├── games/           # Game sessions
+│   ├── duels/           # Duels state and replays
 │   ├── subscriptions/   # Subscription info
 │   └── authentication/  # Login and auth
 │
@@ -23,6 +24,7 @@ examples/
     ├── maps/            # Map browsing
     ├── feed/            # Activity feeds
     ├── games/           # Game sessions
+    ├── duels/           # Duels state and replays
     ├── subscriptions/   # Subscription info
     └── authentication/  # Login and auth
 ```
@@ -165,7 +167,28 @@ Python examples require the `requests` library and use environment variables for
 - View round details and guesses
 - Create streak games with custom settings
 - Use difficulty presets (easy, medium, hard, NMPZ)
-- Monitor game state in real-time
+- Monitor game state and progress
+
+### Duels
+
+**JavaScript:**
+- `get-duel-state.js` - View complete duel game state with teams, health, and damage
+- `get-duel-replay.js` - Analyze player actions and behavior from replay data
+
+**Python:**
+- `get_duel_state.py` - View complete duel game state with detailed analysis
+- `get_duel_replay.py` - Analyze player actions and export replay data
+
+**What you can do:**
+- View duel game state
+- Track team health and multipliers
+- Analyze damage dealt per round
+- View player performance statistics
+- Get complete replay of player actions
+- Compare multiple players' strategies
+- Export replay data to CSV/JSON
+- Monitor ongoing duels
+- Analyze timing and behavior patterns
 
 ### Subscriptions
 
