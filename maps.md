@@ -12,6 +12,9 @@ Endpoints for browsing, searching, and managing maps.
 
 Maps are collections of locations used to create games. Users can create custom maps or play official/community maps.
 
+**🚀 Ready to use?** Check out the [maps examples](../examples/javascript/maps/) for ready-to-use scripts:
+- [Browse Popular Maps](../examples/javascript/maps/browse-popular-maps.js) - Discover popular community maps with statistics
+
 ## Endpoints
 
 ### Browse Maps

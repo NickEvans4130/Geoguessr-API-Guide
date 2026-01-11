@@ -38,12 +38,39 @@ The API can change at any time without notice.
 ├── profiles.md                # User profiles and search
 ├── social.md                  # Friends, badges, and social features
 ├── subscriptions.md           # Subscription plans and management
+├── examples/                  # 🔥 Ready-to-use code examples
+│   ├── README.md              # Examples guide and usage
+│   ├── javascript/            # Browser console examples
+│   │   ├── challenges/        # Challenge leaderboards, performance analysis
+│   │   ├── profiles/          # Profile viewing, user search, comparison
+│   │   ├── social/            # Friends list and statistics
+│   │   ├── maps/              # Browse and discover maps
+│   │   └── feed/              # Activity feeds and tracking
+│   └── python/                # Python script examples
+│       ├── challenges/        # Challenge leaderboards, performance analysis
+│       ├── profiles/          # Profile viewing, user search
+│       └── social/            # Friends list and statistics
 └── tests/                     # Testing files (not for public use)
     ├── *-testing.md           # Test scripts for each endpoint
     └── *-testing-results.md   # Raw test results
 ```
 
 **Note**: The `tests/` directory contains internal testing files used to verify API endpoints and is excluded from the main documentation.
+
+### 🚀 Quick Start with Examples
+
+New to the API? Start with the [examples directory](./examples/):
+
+- **JavaScript Examples** - Run directly in your browser console (no setup required!)
+- **Python Examples** - Complete scripts ready to use (`pip install requests`)
+
+**Popular examples:**
+- [Get Challenge Leaderboard](./examples/javascript/challenges/get-leaderboard.js) - View top players and scores
+- [Analyze Your Performance](./examples/javascript/challenges/analyze-performance.js) - See how you rank
+- [Get Your Profile](./examples/javascript/profiles/get-my-profile.js) - View your stats
+- [Friends Activity Feed](./examples/javascript/feed/get-friends-activity.js) - Track what friends are playing
+
+See [examples/README.md](./examples/README.md) for the complete list and usage instructions.
 
 ## Getting Started
 
@@ -287,6 +314,8 @@ def fetch_with_rate_limit(urls, cookies):
 ```
 
 ## Quick Start Examples
+
+**💡 Want more examples?** Check out the [examples directory](./examples/) for ready-to-use scripts including leaderboard analysis, user comparison, activity feeds, and more!
 
 ### Example 1: Get Your Profile
 

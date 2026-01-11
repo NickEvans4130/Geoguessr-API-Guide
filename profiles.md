@@ -13,6 +13,11 @@ Endpoints for retrieving and managing user profile information.
 
 Profile endpoints provide access to user information including stats, customization, and public data.
 
+**🚀 Ready to use?** Check out the [profile examples](../examples/javascript/profiles/) for ready-to-use scripts:
+- [Get Your Profile](../examples/javascript/profiles/get-my-profile.js) - View your complete profile and stats
+- [Search Users](../examples/javascript/profiles/search-users.js) - Find players by username
+- [Compare Users](../examples/javascript/profiles/compare-users.js) - Compare two players' statistics
+
 ## Endpoints
 
 ### Get Current User Profile

@@ -12,6 +12,9 @@ Endpoints for managing friends, badges, and social interactions.
 
 Social features include friends management, badge collection, and community events.
 
+**🚀 Ready to use?** Check out the [social examples](../examples/javascript/social/) for ready-to-use scripts:
+- [Get Friends List](../examples/javascript/social/get-friends-list.js) - View all your friends with statistics
+
 ## Endpoints
 
 ### Friends Management

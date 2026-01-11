@@ -16,6 +16,11 @@ Endpoints for creating, viewing, and interacting with GeoGuessr challenges.
 
 Challenges are custom games that can be shared with other players. Each challenge has a unique token and can contain multiple rounds.
 
+**🚀 Ready to use?** Check out the [challenge examples](../examples/javascript/challenges/) for ready-to-use scripts:
+- [Get Leaderboard](../examples/javascript/challenges/get-leaderboard.js) - View top players and statistics
+- [Analyze Performance](../examples/javascript/challenges/analyze-performance.js) - Compare your score to others
+- [Get Challenge Info](../examples/javascript/challenges/get-challenge-info.js) - View challenge settings
+
 **Key Concepts:**
 - **Challenge Token**: 16-character alphanumeric identifier (e.g., `6G9h2UPctmUmUtaa`)
 - **Rounds**: Typically 5 rounds per challenge

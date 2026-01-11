@@ -12,6 +12,9 @@ Endpoints for viewing activity feeds and recent games.
 
 Feed endpoints provide activity streams showing recent games, achievements, and social interactions.
 
+**🚀 Ready to use?** Check out the [feed examples](../examples/javascript/feed/) for ready-to-use scripts:
+- [Get Friends Activity](../examples/javascript/feed/get-friends-activity.js) - View recent games and activities from friends
+
 ## Endpoints
 
 ### Friends Feed
