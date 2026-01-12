@@ -2,6 +2,8 @@
 
 This directory contains practical, ready-to-use code examples for interacting with the GeoGuessr API in both JavaScript and Python.
 
+**💡 To view and download the source code files, visit the [examples directory on GitHub](https://github.com/NickEvans4130/Geoguessr-API-Guide/tree/main/docs/examples).**
+
 ## Directory Structure
 
 ```

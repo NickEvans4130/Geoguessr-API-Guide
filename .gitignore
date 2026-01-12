@@ -22,4 +22,12 @@ Thumbs.db
 notes.md
 scratch.md
 
+# Internal setup files
+MKDOCS_SETUP.md
+
+# MkDocs build directory
+site/
+
+# Hidden files (but allow .github for GitHub Actions)
 .*
+!.github/
