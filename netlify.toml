@@ -1,0 +1,8 @@
+[build]
+  command = "pip install mkdocs-material && mkdocs build"
+  publish = "site"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
