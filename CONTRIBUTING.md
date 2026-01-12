@@ -192,12 +192,14 @@ Our repository is organized as:
 |-- README.md              # Main documentation
 |-- authentication.md      # Auth endpoints
 |-- challenges.md          # Challenge endpoints
+|-- duels.md               # Duels endpoints (game-server API)
 |-- feed.md                # Feed endpoints
 |-- games.md               # Game endpoints
 |-- maps.md                # Map endpoints
 |-- profiles.md            # Profile endpoints
 |-- social.md              # Social endpoints
 |-- subscriptions.md       # Subscription endpoints
+|-- websocket.md           # WebSocket API
 |-- examples/
 |   |-- README.md          # Examples guide
 |   |-- javascript/        # JS examples by category

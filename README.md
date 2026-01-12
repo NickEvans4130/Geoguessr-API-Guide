@@ -39,6 +39,7 @@ The API can change at any time without notice.
 ├── profiles.md                # User profiles and search
 ├── social.md                  # Friends, badges, and social features
 ├── subscriptions.md           # Subscription plans and management
+├── websocket.md               # WebSocket API for live notifications
 ├── examples/                  # 🔥 Ready-to-use code examples
 │   ├── README.md              # Examples guide and usage
 │   ├── javascript/            # Browser console examples
@@ -542,6 +543,13 @@ User feeds and activity streams
 - Friends activity
 - Private feed
 - Recent games
+
+### [WebSocket](./websocket.md)
+Live notifications and social updates
+- Friend presence (online/offline)
+- Chat messages
+- Account updates and missions
+- Status activity changes
 
 ## Best Practices
 
