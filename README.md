@@ -6,7 +6,7 @@
 
 ## 📖 View Documentation
 
-**[Read the full documentation →](https://nickevans4130.github.io/Geoguessr-API-Guide/)**
+**[Read the full documentation →](https://geoguessr-api-docs.netlify.app/)**
 
 ## What's Included
 
