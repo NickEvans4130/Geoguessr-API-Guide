@@ -106,7 +106,7 @@ The API can change at any time without notice.
 
 ## Resources
 
-- **[Full Documentation](https://nickevans4130.github.io/Geoguessr-API-Guide/)**
+- **[Full Documentation](https://geoguessr-api-docs.netlify.app/)**
 - **[Code Examples](https://nickevans4130.github.io/Geoguessr-API-Guide/examples/)**
 - **[Contributing Guide](https://nickevans4130.github.io/Geoguessr-API-Guide/CONTRIBUTING/)**
 - [GeoGuessr Website](https://www.geoguessr.com)
