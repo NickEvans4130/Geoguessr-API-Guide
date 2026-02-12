@@ -4,5 +4,12 @@
 
 [[redirects]]
   from = "/*"
+  to = "/403.html"
+  status = 403
+  force = true
+  conditions = {Role = ["crawler"]}
+
+[[redirects]]
+  from = "/*"
   to = "/index.html"
   status = 200
