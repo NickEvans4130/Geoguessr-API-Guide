@@ -45,6 +45,8 @@ nav:
       - Social: social.md
       - Subscriptions: subscriptions.md
       - WebSocket: websocket.md
+  - Userscripts:
+      - GeoClassics Duels: userscripts/geoclassics-duels.md
   - Contributing: CONTRIBUTING.md
 
 markdown_extensions:
