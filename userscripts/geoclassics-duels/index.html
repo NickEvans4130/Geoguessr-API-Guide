@@ -1,0 +1,2455 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Unofficial GeoGuessr API Documentation">
+      
+      
+        <meta name="author" content="Community">
+      
+      
+      
+        <link rel="prev" href="../../websocket/">
+      
+      
+        <link rel="next" href="../../CONTRIBUTING/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>GeoClassics Duels - GeoGuessr API Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#geoclassics-duels-script-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="GeoGuessr API Documentation" class="md-header__button md-logo" aria-label="GeoGuessr API Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GeoGuessr API Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GeoClassics Duels
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/NickEvans4130/Geoguessr-API-Guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../authentication/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../profiles/" class="md-tabs__link">
+          
+  
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Userscripts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../CONTRIBUTING/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="GeoGuessr API Documentation" class="md-nav__button md-logo" aria-label="GeoGuessr API Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GeoGuessr API Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/NickEvans4130/Geoguessr-API-Guide" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../profiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../games/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Games
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../duels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Duels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../social/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Social
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../subscriptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subscriptions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../websocket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebSocket
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Userscripts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Userscripts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GeoClassics Duels
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GeoClassics Duels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global State
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Global State">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mode-constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mode constants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shared identifiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings-gm_getvalue-backed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SETTINGS (GM_getValue backed)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match-score-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Match score state
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#injectmaphook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        injectMapHook()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getmyplayerid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        getMyPlayerId()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanupallui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cleanupAllUI()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hidedefaultgeoguessrui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hideDefaultGeoGuessrUI()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setmapstatetarget-penalties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        setMapState(target, penalties)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formatdistancemeters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        formatDistance(meters)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateroundscoresuilscore-rscore-ldist-rdist-isgamemaster-lpenalized-rpenal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        updateRoundScoresUI(lScore, rScore, lDist, rDist, isGamemaster, lPenalized, rPenal)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#injectfullscreenbuttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        injectFullscreenButtons()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatematchscoreui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        updateMatchScoreUI()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateroundnumberuiroundnum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        updateRoundNumberUI(roundNum)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mode-1-classics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mode 1: CLASSICS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mode 1: CLASSICS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculategeoclassicsdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calculateGeoClassics(data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rendergeoclassicshudlh-rh-lm-rm-leftcolor-rightcolor-usedelay-maxh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        renderGeoClassicsHUD(lH, rH, lM, rM, leftColor, rightColor, useDelay, maxH)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#showgeoclassicsgameoverwinnerside-lh-rh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        showGeoClassicsGameOver(winnerSide, lH, rH, ...)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerplayermultianimationside-triggerplayerdamageanimationside-damage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        triggerPlayerMultiAnimation(side) / triggerPlayerDamageAnimation(side, damage)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#countdownvalueid-start-end-dur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        countDownValue(id, start, end, dur)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#animateroundscoreel-endscore-delayms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        animateRoundScore(el, endScore, delayMs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mode-2-pinpointing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mode 2: PINPOINTING
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mode 2: PINPOINTING">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculatepinpointingdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calculatePinpointing(data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderpinpointinghudwinthreshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        renderPinpointingHUD(winThreshold)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flashscorescoreelement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        flashScore(scoreElement)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#showpinpointingendscreenwinthreshold-lteam-rteam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        showPinpointingEndScreen(winThreshold, lTeam, rTeam)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary Page
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary Page">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handlesummarypage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        handleSummaryPage()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculateclassicssummarydata-calculatepinpointingsummarydata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calculateClassicsSummary(data) / calculatePinpointingSummary(data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderclassicsduelssummarystate-container-renderpinpointingsummarystate-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        renderClassicsDuelsSummary(state, container) / renderPinpointingSummary(state, container)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jsonparse-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON.parse Hook
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#party-preset-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Party Preset System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Party Preset System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#applypresetkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        applyPreset(key)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setreactinputvalueinput-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        setReactInputValue(input, value)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clickonceandverifybtn-wrap-expectedstepsign" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clickOnceAndVerify(btn, wrap, expectedStepSign)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatebuttonstyles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        updateButtonStyles()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match-score-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Match Score Panel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#timing-constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Timing Constants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-api-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External API Usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global State
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Global State">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mode-constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mode constants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shared identifiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings-gm_getvalue-backed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SETTINGS (GM_getValue backed)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match-score-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Match score state
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#injectmaphook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        injectMapHook()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getmyplayerid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        getMyPlayerId()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanupallui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cleanupAllUI()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hidedefaultgeoguessrui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hideDefaultGeoGuessrUI()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setmapstatetarget-penalties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        setMapState(target, penalties)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formatdistancemeters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        formatDistance(meters)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateroundscoresuilscore-rscore-ldist-rdist-isgamemaster-lpenalized-rpenal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        updateRoundScoresUI(lScore, rScore, lDist, rDist, isGamemaster, lPenalized, rPenal)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#injectfullscreenbuttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        injectFullscreenButtons()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatematchscoreui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        updateMatchScoreUI()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateroundnumberuiroundnum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        updateRoundNumberUI(roundNum)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mode-1-classics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mode 1: CLASSICS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mode 1: CLASSICS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculategeoclassicsdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calculateGeoClassics(data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rendergeoclassicshudlh-rh-lm-rm-leftcolor-rightcolor-usedelay-maxh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        renderGeoClassicsHUD(lH, rH, lM, rM, leftColor, rightColor, useDelay, maxH)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#showgeoclassicsgameoverwinnerside-lh-rh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        showGeoClassicsGameOver(winnerSide, lH, rH, ...)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#triggerplayermultianimationside-triggerplayerdamageanimationside-damage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        triggerPlayerMultiAnimation(side) / triggerPlayerDamageAnimation(side, damage)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#countdownvalueid-start-end-dur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        countDownValue(id, start, end, dur)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#animateroundscoreel-endscore-delayms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        animateRoundScore(el, endScore, delayMs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mode-2-pinpointing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mode 2: PINPOINTING
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mode 2: PINPOINTING">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculatepinpointingdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calculatePinpointing(data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderpinpointinghudwinthreshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        renderPinpointingHUD(winThreshold)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flashscorescoreelement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        flashScore(scoreElement)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#showpinpointingendscreenwinthreshold-lteam-rteam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        showPinpointingEndScreen(winThreshold, lTeam, rTeam)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary Page
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary Page">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handlesummarypage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        handleSummaryPage()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculateclassicssummarydata-calculatepinpointingsummarydata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calculateClassicsSummary(data) / calculatePinpointingSummary(data)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderclassicsduelssummarystate-container-renderpinpointingsummarystate-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        renderClassicsDuelsSummary(state, container) / renderPinpointingSummary(state, container)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jsonparse-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON.parse Hook
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#party-preset-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Party Preset System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Party Preset System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#applypresetkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        applyPreset(key)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setreactinputvalueinput-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        setReactInputValue(input, value)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clickonceandverifybtn-wrap-expectedstepsign" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clickOnceAndVerify(btn, wrap, expectedStepSign)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatebuttonstyles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        updateButtonStyles()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match-score-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Match Score Panel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#timing-constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Timing Constants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-api-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External API Usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="geoclassics-duels-script-analysis">GeoClassics Duels — Script Analysis<a class="headerlink" href="#geoclassics-duels-script-analysis" title="Permanent link">&para;</a></h1>
+<p><strong>Script:</strong> GeoClassics Duels<br />
+<strong>Version:</strong> 1.5.0<br />
+<strong>Author:</strong> BojanR (Discord: <code>734114244194467990</code>, Greasy Fork: <a href="https://update.greasyfork.org/scripts/566899/GeoClassics%20Duels.user.js">GeoClassics Duels</a>)<br />
+<strong>License:</strong> MIT<br />
+<strong>Matches:</strong> <code>https://www.geoguessr.com/*</code></p>
+<blockquote>
+<p>This document analyses the internals of the GeoClassics Duels Tampermonkey userscript. It is intended as a reference for understanding how the script hooks into GeoGuessr's frontend and the game-server API. All credit for the original work belongs to the script's author.</p>
+</blockquote>
+<hr />
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>GeoClassics Duels overlays a custom game experience on top of GeoGuessr's Parties / Duels feature. It intercepts JSON responses from the game-server, calculates its own health/score system, and injects a HUD directly into the DOM. Two distinct game modes are supported:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Trigger</th>
+<th>Win condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CLASSICS</strong></td>
+<td><code>roundWinMultiplierIncrement</code> &gt; 0</td>
+<td>Opponent's HP reaches 0</td>
+</tr>
+<tr>
+<td><strong>PINPOINTING</strong></td>
+<td><code>roundWinMultiplierIncrement</code> === 0</td>
+<td>First to reach the win threshold (rounds won)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>JSON.parse hook
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    └─ detects duel state in every parsed response
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>         ├─ MODE.CLASSICS  → calculateGeoClassics()
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>         └─ MODE.PINPOINTING → calculatePinpointing()
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Google Maps hook (injected page-script)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    └─ intercepts Map / StreetViewPanorama constructors
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>         ├─ stores instances in window.__GM_MAPS
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>         ├─ draws target circles on result maps
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>         └─ handles &quot;X to jump forward&quot; keyboard shortcut
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>setInterval (1 s)
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    ├─ handleSummaryPage()   — summary banner on /summary routes
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    └─ injectFullscreenButtons() — POV fullscreen toggle on /spectate
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>MutationObserver
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    └─ ensureButtons() — party preset bar on /party modal
+</code></pre></div>
+<hr />
+<h2 id="global-state">Global State<a class="headerlink" href="#global-state" title="Permanent link">&para;</a></h2>
+<h3 id="mode-constants">Mode constants<a class="headerlink" href="#mode-constants" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">MODE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">UNKNOWN</span><span class="p">,</span><span class="w"> </span><span class="nx">CLASSICS</span><span class="p">,</span><span class="w"> </span><span class="nx">PINPOINTING</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<code>currentMode</code> tracks which calculation path is active. It is set each time a duel state is detected in <code>JSON.parse</code>.</p>
+<h3 id="shared-identifiers">Shared identifiers<a class="headerlink" href="#shared-identifiers" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>myPlayerId</code></td>
+<td>Cached local player ID, used to orient left/right sides</td>
+</tr>
+<tr>
+<td><code>currentDuelId</code></td>
+<td>ID of the active game; triggers a full state reset when it changes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="settings-gm_getvalue-backed">SETTINGS (GM_getValue backed)<a class="headerlink" href="#settings-gm_getvalue-backed" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gc_tieDivisor</code></td>
+<td>2</td>
+<td>Controls how wide the tie range is: <code>tieRange = floor((5000 - best) / tieDivisor)</code></td>
+</tr>
+<tr>
+<td><code>gc_bgUrl</code></td>
+<td>imgur URL</td>
+<td>Background image for the result screen</td>
+</tr>
+<tr>
+<td><code>gc_presets</code></td>
+<td>Object</td>
+<td>Per-mode default lobby settings (health, timer, multiplier, etc.)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="match-score-state">Match score state<a class="headerlink" href="#match-score-state" title="Permanent link">&para;</a></h3>
+<p><code>matchScoreLeft / matchScoreRight</code> persist across page loads via <code>GM_setValue</code>. <code>countedGames</code> (capped at 50 entries) prevents the same game from being counted twice.</p>
+<hr />
+<h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
+<h3 id="injectmaphook"><code>injectMapHook()</code><a class="headerlink" href="#injectmaphook" title="Permanent link">&para;</a></h3>
+<p>Runs at <code>document-start</code>. Injects a <code>&lt;script&gt;</code> into the page context (bypassing the userscript sandbox) that:</p>
+<ul>
+<li>Wraps <code>google.maps.Map</code> and <code>google.maps.StreetViewPanorama</code> constructors so every instance is stored in <code>window.__GM_MAPS</code> / <code>window.__GM_PANO</code>.</li>
+<li>Exposes <code>window.__GM_SET_TARGET(lat, lng, outerRadius, innerRadius, color)</code> — called by the userscript to draw a coloured annular target on result maps.</li>
+<li>Exposes <code>window.__GM_SET_PENALTY_MARKERS(coordsArray)</code> — places badge markers at penalised guess locations.</li>
+<li>Exposes <code>window.__GM_JUMP_FORWARD(baseDistance)</code> — moves the Street View panorama forward in the direction of the current POV. Bound to the <code>X</code> key. Respects <code>window.__gm_forbidMoving</code>.</li>
+<li>Runs a <code>setInterval</code> at 50 ms that redraws <code>google.maps.Polygon</code> overlays on every result map instance.</li>
+</ul>
+<h3 id="getmyplayerid"><code>getMyPlayerId()</code><a class="headerlink" href="#getmyplayerid" title="Permanent link">&para;</a></h3>
+<p>Returns the authenticated user's ID. Tries several locations in <code>unsafeWindow</code> and the <code>__NEXT_DATA__</code> script tag. Result is cached in <code>myPlayerId</code>.</p>
+<h3 id="cleanupallui"><code>cleanupAllUI()</code><a class="headerlink" href="#cleanupallui" title="Permanent link">&para;</a></h3>
+<p>Removes every custom DOM element (HUD, game-over overlay, score boxes, match-point badges, round number, summary banner). Called whenever a new <code>currentDuelId</code> is detected.</p>
+<h3 id="hidedefaultgeoguessrui"><code>hideDefaultGeoGuessrUI()</code><a class="headerlink" href="#hidedefaultgeoguessrui" title="Permanent link">&para;</a></h3>
+<p>Injects a <code>&lt;style id="geoclassics-hide-style"&gt;</code> that hides GeoGuessr's native health bars, damage numbers, round multipliers, and spectator sidebars. Also applies the custom background image and all animation keyframes. Idempotent — only injected once.</p>
+<h3 id="setmapstatetarget-penalties"><code>setMapState(target, penalties)</code><a class="headerlink" href="#setmapstatetarget-penalties" title="Permanent link">&para;</a></h3>
+<p>Bridges the userscript sandbox into the page context by calling <code>unsafeWindow.__GM_SET_TARGET</code> and <code>unsafeWindow.__GM_SET_PENALTY_MARKERS</code>.</p>
+<h3 id="formatdistancemeters"><code>formatDistance(meters)</code><a class="headerlink" href="#formatdistancemeters" title="Permanent link">&para;</a></h3>
+<p>Formats a raw metre value to a human-readable string (<code>"1.2 km"</code> or <code>"450 m"</code>).</p>
+<h3 id="updateroundscoresuilscore-rscore-ldist-rdist-isgamemaster-lpenalized-rpenal"><code>updateRoundScoresUI(lScore, rScore, lDist, rDist, isGamemaster, lPenalized, rPenal)</code><a class="headerlink" href="#updateroundscoresuilscore-rscore-ldist-rdist-isgamemaster-lpenalized-rpenal" title="Permanent link">&para;</a></h3>
+<p>Spectator-only. Renders per-round score and distance labels at fixed positions within <code>spectate-header_variableContent</code>. Calls <code>animateRoundScore</code> for the count-up animation.</p>
+<h3 id="injectfullscreenbuttons"><code>injectFullscreenButtons()</code><a class="headerlink" href="#injectfullscreenbuttons" title="Permanent link">&para;</a></h3>
+<p>Adds a fullscreen toggle button to every <code>player-pov_root__</code> element on the spectate page. Clicking toggles the <code>.geoclassics-pov-fullscreen</code> class which uses CSS <code>position:fixed; inset:0</code> to expand the POV.</p>
+<h3 id="updatematchscoreui"><code>updateMatchScoreUI()</code><a class="headerlink" href="#updatematchscoreui" title="Permanent link">&para;</a></h3>
+<p>Spectator-only. Renders a persistent <code>MATCH SCORE L - R</code> label above the centre of the spectate header.</p>
+<h3 id="updateroundnumberuiroundnum"><code>updateRoundNumberUI(roundNum)</code><a class="headerlink" href="#updateroundnumberuiroundnum" title="Permanent link">&para;</a></h3>
+<p>Spectator-only. Renders <code>ROUND N</code> at the top-centre of the spectate header.</p>
+<hr />
+<h2 id="mode-1-classics">Mode 1: CLASSICS<a class="headerlink" href="#mode-1-classics" title="Permanent link">&para;</a></h2>
+<h3 id="calculategeoclassicsdata"><code>calculateGeoClassics(data)</code><a class="headerlink" href="#calculategeoclassicsdata" title="Permanent link">&para;</a></h3>
+<p>The main calculation loop for the health-based mode.</p>
+<p><strong>Algorithm per round:</strong></p>
+<ol>
+<li>Look up each team's <code>roundResults[i].score</code>.</li>
+<li>Compute <code>tieRange = floor((5000 - best) / tieDivisor)</code>. If the score gap is within <code>tieRange</code>, the round is a tie (no multiplier change, no damage).</li>
+<li><code>damage = |scoreLeft - scoreRight| * winnerMultiplier</code>. Subtracted from the loser's health.</li>
+<li>Winner's multiplier increases by <code>multiIncrement</code>.</li>
+</ol>
+<p><strong>Side assignment:</strong> In player mode the local player is always placed on the left. In spectator mode team index 0 is left.</p>
+<p><strong>Animations:</strong> When a new finished round is detected (<code>lastFinishedRoundNum &gt; gc_lastAnimatedRound</code>), the function schedules:
+- <code>triggerPlayerMultiAnimation</code> — CSS <code>animate-multi-bump</code> on the winner's multiplier box.
+- <code>triggerPlayerDamageAnimation</code> — CSS <code>animate-damage-pop</code> showing the damage number.
+- <code>countDownValue</code> — animated HP countdown.</p>
+<p><strong>Target circle:</strong> Calculates <code>outerRadius</code> and <code>innerRadius</code> from the score using the inverse of GeoGuessr's scoring formula: <code>r = -(maxErr/10) * ln(score/5000)</code>. The circle is green for a decisive win, gold for a tie.</p>
+<p><strong>Win detection:</strong> When either health reaches 0, <code>showGeoClassicsGameOver</code> is called after a delay.</p>
+<h3 id="rendergeoclassicshudlh-rh-lm-rm-leftcolor-rightcolor-usedelay-maxh"><code>renderGeoClassicsHUD(lH, rH, lM, rM, leftColor, rightColor, useDelay, maxH)</code><a class="headerlink" href="#rendergeoclassicshudlh-rh-lm-rm-leftcolor-rightcolor-usedelay-maxh" title="Permanent link">&para;</a></h3>
+<p>Builds the HUD DOM on first call and updates it on subsequent calls. Two layouts exist:</p>
+<ul>
+<li><strong>Spectator layout</strong> — multiplier boxes centred above each player, health bars in the column grid cells.</li>
+<li><strong>Player layout</strong> — compact side panels beside the native HUD area, including a round score counter below each health bar.</li>
+</ul>
+<p>The health bar width is a CSS transition driven by <code>width: ${(hp/maxH)*100}%</code>. Transition delay is set to <code>useDelay ? VISUAL_DELAY_MS : 0</code> to synchronise with the GeoGuessr result reveal.</p>
+<h3 id="showgeoclassicsgameoverwinnerside-lh-rh"><code>showGeoClassicsGameOver(winnerSide, lH, rH, ...)</code><a class="headerlink" href="#showgeoclassicsgameoverwinnerside-lh-rh" title="Permanent link">&para;</a></h3>
+<p>Renders a full-screen overlay with "GAME OVER" and the winner's name (looked up from <code>userNameMap</code>). A "Close" button sets <code>gc_gameOverDismissed = true</code> and removes the overlay.</p>
+<h3 id="triggerplayermultianimationside-triggerplayerdamageanimationside-damage"><code>triggerPlayerMultiAnimation(side)</code> / <code>triggerPlayerDamageAnimation(side, damage)</code><a class="headerlink" href="#triggerplayermultianimationside-triggerplayerdamageanimationside-damage" title="Permanent link">&para;</a></h3>
+<p>Force-reflow pattern (<code>void el.offsetWidth</code>) to restart CSS animations on the multiplier and damage elements.</p>
+<h3 id="countdownvalueid-start-end-dur"><code>countDownValue(id, start, end, dur)</code><a class="headerlink" href="#countdownvalueid-start-end-dur" title="Permanent link">&para;</a></h3>
+<p><code>requestAnimationFrame</code> loop that interpolates a DOM element's <code>textContent</code> from <code>start</code> to <code>end</code> over <code>dur</code> milliseconds.</p>
+<h3 id="animateroundscoreel-endscore-delayms"><code>animateRoundScore(el, endScore, delayMs)</code><a class="headerlink" href="#animateroundscoreel-endscore-delayms" title="Permanent link">&para;</a></h3>
+<p>Count-up animation using <code>setInterval</code> at 30 fps. Clears any previous animation targeting the same element. If <code>endScore</code> is <code>null</code>, the element is blanked immediately.</p>
+<hr />
+<h2 id="mode-2-pinpointing">Mode 2: PINPOINTING<a class="headerlink" href="#mode-2-pinpointing" title="Permanent link">&para;</a></h2>
+<h3 id="calculatepinpointingdata"><code>calculatePinpointing(data)</code><a class="headerlink" href="#calculatepinpointingdata" title="Permanent link">&para;</a></h3>
+<p>Score-based mode where each round awards 1 or 2 points (no HP).</p>
+<p><strong>Point rules per round:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Points awarded</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Both 5000, team 0 faster</td>
+<td>team 0 +1</td>
+</tr>
+<tr>
+<td>Both 5000, team 1 faster</td>
+<td>team 1 +1</td>
+</tr>
+<tr>
+<td>One team scores 5000, other does not</td>
+<td>winner +2</td>
+</tr>
+<tr>
+<td>Normal win outside tie range</td>
+<td>winner +1</td>
+</tr>
+<tr>
+<td>Tie (within tie range)</td>
+<td>neither</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Penalty rule:</strong> If a player guesses before the penalty time (<code>roundStart + maxRoundTime - roundTime</code>) and their score is not 5000, their score is set to 0.</p>
+<p><strong>Tie range</strong> uses the same formula as CLASSICS: <code>floor((5000 - best) / tieDivisor)</code>.</p>
+<p>When scores change, the function locks the score boxes (<code>dataset.locked = 'true'</code>), waits 4 seconds for the GeoGuessr animation, then updates and flashes the box.</p>
+<h3 id="renderpinpointinghudwinthreshold"><code>renderPinpointingHUD(winThreshold)</code><a class="headerlink" href="#renderpinpointinghudwinthreshold" title="Permanent link">&para;</a></h3>
+<p>Creates or updates two absolute-positioned score boxes (<code>#leftScore</code>, <code>#rightScore</code>). On player view it also manages match-point badges (<code>#leftMatchpoint</code>, <code>#rightMatchpoint</code>) when a team is within 2 points of the threshold. On spectator view, match-point badges are attached directly to the <code>player-pov_root__</code> elements.</p>
+<h3 id="flashscorescoreelement"><code>flashScore(scoreElement)</code><a class="headerlink" href="#flashscorescoreelement" title="Permanent link">&para;</a></h3>
+<p>Alternates the score box background/border between the flash colour (<code>rgba(90,219,149,0.4)</code>) and the original 6 times at 300 ms intervals.</p>
+<h3 id="showpinpointingendscreenwinthreshold-lteam-rteam"><code>showPinpointingEndScreen(winThreshold, lTeam, rTeam)</code><a class="headerlink" href="#showpinpointingendscreenwinthreshold-lteam-rteam" title="Permanent link">&para;</a></h3>
+<p>Same pattern as <code>showGeoClassicsGameOver</code> — full-screen overlay with winner name and final score, dismissible.</p>
+<hr />
+<h2 id="summary-page">Summary Page<a class="headerlink" href="#summary-page" title="Permanent link">&para;</a></h2>
+<h3 id="handlesummarypage"><code>handleSummaryPage()</code><a class="headerlink" href="#handlesummarypage" title="Permanent link">&para;</a></h3>
+<p>Polls on a 1 s interval when the path includes <code>/summary</code>. Fetches the completed game from <code>game-server.geoguessr.com/api/duels/{id}</code> and chooses the correct summary renderer based on <code>roundWinMultiplierIncrement</code>.</p>
+<h3 id="calculateclassicssummarydata-calculatepinpointingsummarydata"><code>calculateClassicsSummary(data)</code> / <code>calculatePinpointingSummary(data)</code><a class="headerlink" href="#calculateclassicssummarydata-calculatepinpointingsummarydata" title="Permanent link">&para;</a></h3>
+<p>Re-run the respective calculation loops against the complete round history and return a final state object (<code>{blueHealth, redHealth, blueMulti, redMulti}</code> or <code>{leftScore, rightScore}</code>).</p>
+<h3 id="renderclassicsduelssummarystate-container-renderpinpointingsummarystate-container"><code>renderClassicsDuelsSummary(state, container)</code> / <code>renderPinpointingSummary(state, container)</code><a class="headerlink" href="#renderclassicsduelssummarystate-container-renderpinpointingsummarystate-container" title="Permanent link">&para;</a></h3>
+<p>Prepend a styled banner to <code>game-summary_innerContainer</code> showing the winner and final HP / score.</p>
+<hr />
+<h2 id="jsonparse-hook">JSON.parse Hook<a class="headerlink" href="#jsonparse-hook" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">originalParse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(...</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Every JSON payload parsed by GeoGuessr passes through this wrapper. The hook:</p>
+<ol>
+<li>Extracts <code>user.id</code> to populate <code>myPlayerId</code>.</li>
+<li>Detects <code>forbidMoving</code> in any of several possible locations and sets <code>unsafeWindow.__gm_forbidMoving</code>.</li>
+<li>Reads <code>map.maxErrorDistance</code> for the target-circle formula.</li>
+<li>Identifies a duel state object (by the presence of <code>gameId</code>, <code>teams</code>, <code>rounds</code>).</li>
+<li>On a new <code>gameId</code>, calls <code>cleanupAllUI()</code> and resets all state.</li>
+<li>Routes to <code>calculateGeoClassics</code> or <code>calculatePinpointing</code>.</li>
+</ol>
+<hr />
+<h2 id="party-preset-system">Party Preset System<a class="headerlink" href="#party-preset-system" title="Permanent link">&para;</a></h2>
+<p>When the user is on <code>/party</code> and the Settings modal is open, a floating button bar is injected.</p>
+<h3 id="applypresetkey"><code>applyPreset(key)</code><a class="headerlink" href="#applypresetkey" title="Permanent link">&para;</a></h3>
+<p>Orchestrates a sequence of DOM interactions to configure the lobby:</p>
+<table>
+<thead>
+<tr>
+<th>Helper</th>
+<th>What it drives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>setGameMode(label)</code></td>
+<td>Clicks the correct mode label (Moving / No Move / NMPZ)</td>
+</tr>
+<tr>
+<td><code>setSliderValue(labelText, val)</code></td>
+<td>Finds the slider wrapper by label, sets value via <code>setReactInputValue</code></td>
+</tr>
+<tr>
+<td><code>setNumericToValue(labelText, target)</code></td>
+<td>Clicks +/- buttons until the value matches (up to 150 iterations)</td>
+</tr>
+<tr>
+<td><code>setInitialHealth(value)</code></td>
+<td>Direct input manipulation on the health field</td>
+</tr>
+<tr>
+<td><code>setToggle(labelText, state)</code></td>
+<td>Clicks a checkbox label if its current state differs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="setreactinputvalueinput-value"><code>setReactInputValue(input, value)</code><a class="headerlink" href="#setreactinputvalueinput-value" title="Permanent link">&para;</a></h3>
+<p>Uses the native <code>HTMLInputElement.prototype.value</code> setter descriptor (bypassing React's synthetic event system) then dispatches <code>input</code> and <code>change</code> events to trigger React's reconciliation.</p>
+<h3 id="clickonceandverifybtn-wrap-expectedstepsign"><code>clickOnceAndVerify(btn, wrap, expectedStepSign)</code><a class="headerlink" href="#clickonceandverifybtn-wrap-expectedstepsign" title="Permanent link">&para;</a></h3>
+<p>Clicks a +/- button and waits up to 350 ms for the value to change. Retries once if the value did not change. Returns the new value.</p>
+<h3 id="updatebuttonstyles"><code>updateButtonStyles()</code><a class="headerlink" href="#updatebuttonstyles" title="Permanent link">&para;</a></h3>
+<p>Reads the current lobby settings and highlights the matching preset button with a green border/background. Also relabels the "Rounds Without Multipliers" numeric row to "First to (how many points)" when the Pinpointing preset is active.</p>
+<h3 id="match-score-panel">Match Score Panel<a class="headerlink" href="#match-score-panel" title="Permanent link">&para;</a></h3>
+<p>Visible to non-guest hosts only. Provides +/- adjusters for <code>matchScoreLeft</code> / <code>matchScoreRight</code>, a reset button, and an enable/disable toggle. All values persist via <code>GM_setValue</code>.</p>
+<hr />
+<h2 id="timing-constants">Timing Constants<a class="headerlink" href="#timing-constants" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Value</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ANIMATION_DELAY_MS</code></td>
+<td>2650 ms</td>
+<td>Delay before multiplier animation (synced to GeoGuessr reveal)</td>
+</tr>
+<tr>
+<td><code>VISUAL_DELAY_MS</code></td>
+<td>2650 ms</td>
+<td>Delay before HP bar transition and damage pop</td>
+</tr>
+<tr>
+<td><code>TRANSITION_MS</code></td>
+<td>2300 ms</td>
+<td>Duration of the HP count-down animation</td>
+</tr>
+<tr>
+<td>GM offset (player)</td>
+<td>0 ms</td>
+<td>No extra delay in player mode</td>
+</tr>
+<tr>
+<td>GM offset (spectator)</td>
+<td>+3000 ms (multi) / +2000 ms (health)</td>
+<td>Spectator sees results later</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="external-api-usage">External API Usage<a class="headerlink" href="#external-api-usage" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>game-server.geoguessr.com/api/duels/{id}</code></td>
+<td>GET (fetch, credentials: include)</td>
+<td>Summary page — fetch completed game state</td>
+</tr>
+<tr>
+<td><code>www.geoguessr.com/api/v3/users/{playerId}</code></td>
+<td>GET (fetch, credentials: include)</td>
+<td>Resolve player nicknames not included in the duel payload</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
