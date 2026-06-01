@@ -150,11 +150,99 @@ fetch('https://www.geoguessr.com/api/v3/profiles', {
 
 ### Get User Profile by ID
 
-**This endpoint does not exist.** Returns 404 Not Found.
+Retrieve a player's identity, avatar, and equipped badge by user ID.
 
-To get information about other users:
-- Use the Search Users endpoint below
-- Information about users appears in challenge results, friend lists, and other endpoints
+**Endpoint:**
+```
+GET /v4/player-identities/{userId}
+```
+
+**Authentication:** Required
+
+**Parameters:**
+- `userId` - The user's ID (24-character hex string)
+
+**Example Request:**
+```javascript
+const userId = '60b1162519261200015e3ca2';
+fetch(`https://www.geoguessr.com/api/v4/player-identities/${userId}`, {
+    credentials: 'include'
+})
+```
+
+**Response Structure:**
+```json
+{
+  "player": {
+    "id": "60b1162519261200015e3ca2",
+    "nick": "John Harvey Kellogg",
+    "pinImageId": "pin/d79ffa3b3b4185fe5ce269c54af53bf6.png",
+    "mugshotPath": null,
+    "fullBodyPath": "pin/e9efc1f1fad18775dcfe6e18225ce297.png",
+    "countryCode": "us",
+    "flair": 2,
+    "type": 0,
+    "titleTierId": 190,
+    "clubTag": {
+      "tag": "CONC",
+      "clubId": "13f74400-2694-48f2-9794-8933d75fe292",
+      "level": 22
+    }
+  },
+  "avatar": {
+    "equipped": [
+      {
+        "id": "BALDSHAVED_BASE",
+        "slot": 1,
+        "hides": [],
+        "group": "",
+        "morphTarget": "",
+        "type": "BALDSHAVED",
+        "variant": "BASE",
+        "mesh": "",
+        "meshGlb": "mesh/9597b64284d3328f26401d2a0a335bae.glb",
+        "texture": "texture/86491e321559f472f650ec37d18991c3.webp",
+        "icon": "avatarasseticon/e0c526645434808b50f7c960a8e5061b.png",
+        "priority": 99,
+        "unlocked": true,
+        "isEliteExclusive": false,
+        "requirements": [],
+        "name": "shop.title-baldshaved-base",
+        "description": "shop.description-baldshaved-base",
+        "rarity": 1
+      }
+    ],
+    "equippedBadge": {
+      "id": "X3atvQQDTVMI6ytsIIg8rVQozGs6D4uW",
+      "name": "Globetrotter",
+      "hint": "Explore different maps",
+      "description": "Explore different maps",
+      "imagePath": "badge/e12081b8202d5d3cbab7348796c5dabe.png",
+      "hasLevels": true,
+      "category": "Maps",
+      "applyRounding": true,
+      "level": 5,
+      "levelImage": {
+        "diffuseMapPath": "badge/7c4fb4f07f2a6d663c1384d8d6ed8180.png",
+        "depthMapPath": "badge/3737c7ce7b988c7c439554b1393c9bbd.png"
+      },
+      "awarded": "2021-12-20T22:15:02.1000000Z",
+      "progression": null,
+      "totalLevels": 5,
+      "isSunsetted": false,
+      "nextLevelDescription": "",
+      "nextLevelImage": null
+    }
+  }
+}
+```
+
+**Important Notes:**
+- `player.pinImageId` is the map pin image path
+- `player.fullBodyPath` is the full-body avatar image path
+- `avatar.equipped` contains all currently equipped avatar items across slots
+- `avatar.equippedBadge` is the badge the player has chosen to display; may be `null`
+- Asset paths are relative and must be prefixed with `https://www.geoguessr.com/images/` to form full URLs
 
 ---
 
@@ -372,6 +460,72 @@ interface UserObject {
   } | null;
 }
 
+interface PlayerIdentityResponse {
+  player: {
+    id: string;
+    nick: string;
+    pinImageId: string;
+    mugshotPath: string | null;
+    fullBodyPath: string;
+    countryCode: string;
+    flair: number;
+    type: number;
+    titleTierId: number;
+    clubTag: {
+      tag: string;
+      clubId: string;
+      level: number;
+    } | null;
+  };
+  avatar: {
+    equipped: AvatarAsset[];
+    equippedBadge: EquippedBadge | null;
+  };
+}
+
+interface AvatarAsset {
+  id: string;
+  slot: number;
+  hides: string[];
+  group: string;
+  morphTarget: string;
+  type: string;
+  variant: string;
+  mesh: string;
+  meshGlb: string;
+  texture: string;
+  icon: string;
+  priority: number;
+  unlocked: boolean;
+  isEliteExclusive: boolean;
+  requirements: { type: number; conditions: { type: number; value: number }[] }[];
+  name: string;
+  description: string;
+  rarity: number;               // 1 = Common, 4 = Epic, etc.
+}
+
+interface EquippedBadge {
+  id: string;
+  name: string;
+  hint: string;
+  description: string;
+  imagePath: string;
+  hasLevels: boolean;
+  category: string;
+  applyRounding: boolean;
+  level: number;
+  levelImage: {
+    diffuseMapPath: string;
+    depthMapPath: string;
+  } | null;
+  awarded: string;              // ISO 8601 timestamp
+  progression: number | null;
+  totalLevels: number;
+  isSunsetted: boolean;
+  nextLevelDescription: string;
+  nextLevelImage: null;
+}
+
 interface PlayingRestriction {
   restriction: number;
   canPlayGame: boolean;
@@ -508,20 +662,30 @@ def search_users(query, cookie):
 **JavaScript:**
 ```javascript
 async function getUserProfile(userId) {
-    const url = `https://www.geoguessr.com/api/v3/profiles/${userId}`;
+    const url = `https://www.geoguessr.com/api/v4/player-identities/${userId}`;
     const response = await fetch(url, { credentials: 'include' });
 
     if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
     }
 
-    const profile = await response.json();
-    return profile;
+    const data = await response.json();
+    const { player, avatar } = data;
+
+    console.log(`User: ${player.nick} (${player.countryCode.toUpperCase()})`);
+    console.log(`User ID: ${player.id}`);
+    if (player.clubTag) {
+        console.log(`Club: [${player.clubTag.tag}] (Level ${player.clubTag.level})`);
+    }
+    if (avatar.equippedBadge) {
+        console.log(`Badge: ${avatar.equippedBadge.name} (Level ${avatar.equippedBadge.level})`);
+    }
+
+    return data;
 }
 
 // Usage
-const userProfile = await getUserProfile('59c55f9656b1c23bc81cb742');
-console.log(userProfile);
+const userProfile = await getUserProfile('60b1162519261200015e3ca2');
 ```
 
 ---
@@ -531,16 +695,22 @@ console.log(userProfile);
 ### 1. Display User Card
 
 ```javascript
+const IMG_BASE = 'https://www.geoguessr.com/images/';
+
 async function displayUserCard(userId) {
-    const profile = await getUserProfile(userId);
+    const { player, avatar } = await getUserProfile(userId);
+    const pinUrl = player.pinImageId ? IMG_BASE + player.pinImageId : 'default-pin.png';
+    const badgeHtml = avatar.equippedBadge
+        ? `<img src="${IMG_BASE + avatar.equippedBadge.imagePath}" title="${avatar.equippedBadge.name}" alt="Badge">`
+        : '';
 
     return `
         <div class="user-card">
-            <img src="${profile.pin?.url || 'default-pin.png'}" alt="Pin">
-            <h3>${profile.nick}</h3>
-            <p>Level: ${profile.levelProgress?.level || 'N/A'}</p>
-            <p>Country: ${profile.countryCode.toUpperCase()}</p>
-            ${profile.isVerified ? '<span class="verified">✓ Verified</span>' : ''}
+            <img src="${pinUrl}" alt="Pin">
+            <h3>${player.nick}</h3>
+            <p>Country: ${player.countryCode.toUpperCase()}</p>
+            ${player.clubTag ? `<p>Club: [${player.clubTag.tag}]</p>` : ''}
+            ${badgeHtml}
         </div>
     `;
 }
