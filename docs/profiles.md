@@ -246,6 +246,104 @@ fetch(`https://www.geoguessr.com/api/v4/player-identities/${userId}`, {
 
 ---
 
+### Get User Profiles by ID (v3)
+
+Retrieve one or more full user profiles by ID. Returns the same rich profile object shape as the authenticated user's own profile, including XP progress, competitive stats, and avatar info.
+
+**Endpoint:**
+```
+GET /v3/users?ids={userId}
+```
+
+**Authentication:** Required
+
+**Parameters:**
+- `ids` - User ID (24-character hex string). Pass the parameter multiple times to fetch several users in one request.
+
+**Example Request:**
+```javascript
+const userId = '607a091b50996a00015305c6';
+fetch(`https://www.geoguessr.com/api/v3/users?ids=${userId}`, {
+    credentials: 'include'
+})
+```
+
+**Multiple users:**
+```javascript
+const ids = ['607a091b50996a00015305c6', '59c55f9656b1c23bc81cb742'];
+const params = ids.map(id => `ids=${id}`).join('&');
+fetch(`https://www.geoguessr.com/api/v3/users?${params}`, {
+    credentials: 'include'
+})
+```
+
+**Response Structure:**
+
+Returns an array of user objects (same shape as the `user` object in `GET /v3/profiles`):
+
+```json
+[
+  {
+    "nick": "exampleUser",
+    "created": "2025-09-17T23:10:23.3690000Z",
+    "isProUser": true,
+    "type": "Unlimited",
+    "isVerified": false,
+    "pin": {
+      "url": "pin/0129cf1d31e8148ad599d34a1547a586.png",
+      "anchor": "center-center",
+      "isDefault": false
+    },
+    "customImage": null,
+    "fullBodyPin": "pin/ca632bec31e115834410e89e389cd671.png",
+    "borderUrl": null,
+    "color": 0,
+    "url": "/user/68cb3fdf6f672817f40cf951",
+    "id": "68cb3fdf6f672817f40cf951",
+    "countryCode": "gb",
+    "streakProgress": null,
+    "explorerProgress": null,
+    "dailyChallengeProgress": 0,
+    "lastClaimedLevel": 69,
+    "progress": {
+      "xp": 167409,
+      "level": 71,
+      "levelXp": 167090,
+      "nextLevel": 72,
+      "nextLevelXp": 173450,
+      "title": { "id": 220, "tierId": 80 },
+      "competitionMedals": { "bronze": 0, "silver": 0, "gold": 0, "platinum": 0 }
+    },
+    "competitive": {
+      "elo": 0,
+      "rating": 0,
+      "lastRatingChange": 0,
+      "division": { "type": 10, "startRating": 0, "endRating": 450 },
+      "onLeaderboard": true
+    },
+    "lastNickOrCountryChange": "2025-11-06T03:13:43.0970000Z",
+    "isBanned": false,
+    "chatBan": false,
+    "nameChangeAvailableAt": null,
+    "avatar": { "fullBodyPath": "pin/ca632bec31e115834410e89e389cd671.png" },
+    "isBotUser": false,
+    "suspendedUntil": null,
+    "wallet": null,
+    "flair": 0,
+    "isCreator": false,
+    "isAppAnonymous": false,
+    "hasSteamAccess": false
+  }
+]
+```
+
+**Important Notes:**
+- Always returns an array, even for a single ID
+- Returns an empty array for IDs that don't exist (does not 404)
+- `hasSteamAccess` appears on v3 user objects but not on the authenticated user's own profile response
+
+---
+
 ### Search Users
 
 Search for users by username. Returns up to 10 results.
@@ -686,6 +784,40 @@ async function getUserProfile(userId) {
 
 // Usage
 const userProfile = await getUserProfile('60b1162519261200015e3ca2');
+```
+
+---
+
+### Example 4: Get Full Profile for One or More Users by ID
+
+**JavaScript:**
+```javascript
+async function getUsersById(...userIds) {
+    const params = userIds.map(id => `ids=${encodeURIComponent(id)}`).join('&');
+    const response = await fetch(
+        `https://www.geoguessr.com/api/v3/users?${params}`,
+        { credentials: 'include' }
+    );
+
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+    }
+
+    const users = await response.json();
+
+    users.forEach(user => {
+        console.log(`${user.nick} — Level ${user.progress.level} (${user.countryCode.toUpperCase()})`);
+        console.log(`  Rating: ${user.competitive.rating}`);
+    });
+
+    return users;
+}
+
+// Single user
+const [user] = await getUsersById('607a091b50996a00015305c6');
+
+// Multiple users
+const users = await getUsersById('607a091b50996a00015305c6', '59c55f9656b1c23bc81cb742');
 ```
 
 ---
