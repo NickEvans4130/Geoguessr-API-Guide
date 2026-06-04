@@ -15,7 +15,7 @@ Duels is a competitive game mode where players (or teams) compete head-to-head w
 ### Key Concepts
 
 - **Health System**: Each team starts with a configurable amount of health (typically 6000). Damage is dealt based on score differences.
-- **Multipliers**: Damage multipliers increase as rounds progress (1x, 1x, 1.5x, 2x, 2.5x, 3x, 3.5x, 4x, etc.), making later rounds more impactful.
+- **Multipliers**: As of April 2026, multipliers are asymmetric — each team gets its own multiplier per round (stored in `teams[i].roundResults[j].multiplier`), with the closer-guessing team receiving a higher value. `rounds[i].multiplier` is always `1`.
 - **Teams**: Standard duels have 1 player per team, team duels can have multiple players per team.
 - **Rounds**: Games consist of multiple rounds. The best guess from each team is used to calculate damage.
 - **Replay System**: Complete player action tracking including camera movements, map interactions, and guess placements.
@@ -168,7 +168,7 @@ if __name__ == "__main__":
 - Team duels have multiple players per team with `isTeamDuels: true` in options
 - The `version` field increments with each game state update
 - `maxNumberOfRounds: 0` means unlimited rounds until one team's health reaches zero
-- Winner style can be "Victory", "ComebackVictory", or check for "isDraw"
+- Winner style values: `Victory`, `ComebackVictory`, `FlawlessVictory`, `ExpressVictory`, `FlawlessExpressVictory`, `ExpressComebackVictory`, `ExpressKnockoutVictory`, `KnockoutVictory`
 
 ---
 
@@ -344,6 +344,7 @@ if __name__ == "__main__":
 - `MapZoom` - Map zoom level change
 - `PinPosition` - Guess pin placement/movement
 - `GuessWithLatLng` - Final guess submission
+- `Timer` - Appears once per round; payload structure not yet documented
 
 **Important Notes:**
 - All times are Unix timestamps in milliseconds
@@ -351,6 +352,8 @@ if __name__ == "__main__":
 - The round number is 1-indexed (first round is 1, not 0)
 - Works for both standard duels and team duels
 - Not all players may have replay data if they timed out or disconnected
+- Returns HTTP 403 with no body for replays older than ~30 days, or for games played on mobile. The GeoGuessr UI shows: *"Replay not available, the round was either played on mobile or has exceeded the 30-day storage limit"*
+- Access is not restricted to game participants — any authenticated user can fetch replays for any game
 
 ---
 
@@ -467,7 +470,7 @@ interface DuelRound {
   };
   hasProcessedRoundTimeout: boolean;
   isHealingRound: boolean;
-  multiplier: number;
+  multiplier: 1; // Always 1 as of April 2026; actual per-team multiplier is in teams[i].roundResults[j].multiplier
   damageMultiplier: number;
   startTime: string | null; // ISO 8601 timestamp
   endTime: string | null; // ISO 8601 timestamp
@@ -512,7 +515,7 @@ interface DuelOptions {
   } | null;
   roundStartingBehavior: string;
   flashbackRounds: number[];
-  competitiveGameMode: "NoMoveDuels" | "MoveDuels" | "None";
+  competitiveGameMode: "NoMoveDuels" | "NmpzDuels" | "StandardDuels" | "MoveDuels" | "None";
   countAllGuesses: boolean;
   masterControlAutoStartRounds: boolean;
   consumedLocationsIdentifier: string;
@@ -545,7 +548,15 @@ Game outcome.
 interface DuelResult {
   isDraw: boolean;
   winningTeamId: string;
-  winnerStyle: "Victory" | "ComebackVictory";
+  winnerStyle:
+    | "Victory"
+    | "ComebackVictory"
+    | "FlawlessVictory"
+    | "ExpressVictory"
+    | "FlawlessExpressVictory"
+    | "ExpressComebackVictory"
+    | "ExpressKnockoutVictory"
+    | "KnockoutVictory";
 }
 ```
 
@@ -602,7 +613,7 @@ interface RankedProgress {
   ratingAfter: number;
   winStreak: number;
   bucketSortedBy: "Rating";
-  gameMode: "NoMoveDuels" | "MoveDuels";
+  gameMode: "NoMoveDuels" | "NmpzDuels" | "StandardDuels" | "MoveDuels";
   gameModeRatingBefore: number;
   gameModeRatingAfter: number;
   gameModeGamesPlayed: number;
@@ -648,7 +659,8 @@ type ReplayEventType =
   | "MapPosition"
   | "MapZoom"
   | "PinPosition"
-  | "GuessWithLatLng";
+  | "GuessWithLatLng"
+  | "Timer"; // Appears once per round; payload structure undocumented
 ```
 
 #### Replay Event Payloads
